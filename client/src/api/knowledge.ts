@@ -11,6 +11,8 @@ export interface KnowledgeItem {
   updated_at: string
 }
 
+export type KnowledgeItemInput = Omit<Partial<KnowledgeItem>, 'tags'> & { tags?: string[] }
+
 export const knowledgeApi = {
   list: (params?: { search?: string; category?: string }) => {
     const query = new URLSearchParams()
@@ -19,7 +21,7 @@ export const knowledgeApi = {
     const q = query.toString()
     return apiGet<KnowledgeItem[]>(`/knowledge${q ? `?${q}` : ''}`)
   },
-  create: (data: Partial<KnowledgeItem> & { tags?: string[] }) => apiPost<KnowledgeItem>('/knowledge', data),
-  update: (id: number, data: Partial<KnowledgeItem> & { tags?: string[] }) => apiPut<KnowledgeItem>(`/knowledge/${id}`, data),
+  create: (data: KnowledgeItemInput) => apiPost<KnowledgeItem>('/knowledge', data),
+  update: (id: number, data: KnowledgeItemInput) => apiPut<KnowledgeItem>(`/knowledge/${id}`, data),
   remove: (id: number) => apiDelete(`/knowledge/${id}`),
 }

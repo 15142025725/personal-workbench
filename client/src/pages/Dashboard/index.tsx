@@ -132,7 +132,7 @@ export default function Dashboard() {
         </div>
 
         <div className="space-y-4">
-          {data.upcomingInterview ? (
+          {data.upcomingInterview?.interview_date ? (
             <Card>
               <CardHeader title="下一场面试" />
               <div className="text-center py-4">
