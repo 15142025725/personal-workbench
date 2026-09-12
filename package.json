@@ -8,6 +8,7 @@
     "dev:client": "npm run dev -w client",
     "dev:server": "npm run dev -w server",
     "build": "npm run build -w server && npm run build -w client",
+    "build:client": "npm run build -w client",
     "install:all": "npm install",
     "seed": "npx tsx server/src/seed.ts"
   },

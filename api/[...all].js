@@ -1,9 +1,9 @@
 // Vercel Serverless Function - API Handler
-// 使用 @vercel/node 运行时，Express 兼容
-import express from 'express'
-import cors from 'cors'
-import serverless from 'serverless-http'
-import { createClient } from '@supabase/supabase-js'
+// CommonJS 格式，适配 Vercel Node.js 运行时
+const express = require('express')
+const cors = require('cors')
+const serverless = require('serverless-http')
+const { createClient } = require('@supabase/supabase-js')
 
 const supabaseUrl = process.env.SUPABASE_URL
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -504,4 +504,4 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: err.message || 'Internal Server Error' })
 })
 
-export default serverless(app)
+module.exports = serverless(app)
